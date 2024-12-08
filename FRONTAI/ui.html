@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front AI - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000; /* Dark background */
+            color: white; /* Set default text color to white */
+        }
+        header {
+            background-color: #000000; /* Dark black color */
+            color: white;
+            padding: 2px; /* Reduced padding */
+            text-align: center;
+            font-size: 0.8em; /* Reduced font size */
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 1px; /* Reduced padding */
+        }
+        nav a {
+            color: white; /* White text for links */
+            text-decoration: none;
+            padding: 3px; /* Reduced padding */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #000000; /* Dark black color for sidebar */
+            padding: 10px; /* Reduced padding */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            color: white; /* White text for sidebar */
+        }
+        .main {
+            flex: 1;
+            display: flex;
+            padding: 10px; /* Reduced padding */
+        }
+        .upload-area {
+            border: 2px dashed #007bff; /* Keep the border color */
+            padding: 15px; /* Reduced padding */
+            text-align: center;
+            margin-bottom: 15px; /* Reduced margin */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+            color: white; /* White text for upload area */
+        }
+        .upload-area:hover {
+            background-color: rgba(11, 79, 131, 0.252); /* Light blue on hover */
+        }
+        .uploaded-files {
+            margin-top: 15px; /* Reduced margin */
+            color: white; /* White text for uploaded files */
+        }
+        .file {
+            margin: 3px 0; /* Reduced margin */
+            padding: 8px; /* Reduced padding */
+            background-color: #e9ecef; /* Light grey for file items */
+            border-radius: 5px;
+            color: black; /* Black text for file items */
+        }
+        .work-area {
+            flex: 1;
+            margin-left: 15px; /* Reduced margin */
+            padding: 15px; /* Reduced padding */
+            background-color: #000000; /* Dark black color for work area */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px; /* Rounded corners */
+            color: white; /* White text for work area */
+        }
+        .chat-area {
+            width: 300px;
+            margin-left: 15px; /* Reduced margin */
+            padding: 15px; /* Reduced padding */
+            background-color: #000000; /* Dark grey for chat area */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.912);
+            border-radius: 5px; /* Rounded corners */
+            color: white; /* White text for chat area */
+        }
+        footer {
+            background-color: #000000; /* Dark black color */
+            color: white;
+            text-align: center;
+            padding: 1px; /* Further reduced padding */
+            font-size: 0.5em; /* Further reduced font size */
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .button {
+            background-color: #f2f2f2; /* Dark grey color for buttons */
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 8px 12px; /* Reduced padding */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em; /* Reduced font size */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        .button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        #code-display {
+            height: 400px;
+            overflow-y: auto;
+            background: #f7eeee; /* Light grey for code display */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px; /* Reduced margin */
+            color: rgb(240, 232, 232); /* Black text for code display */
+        }
+        .icon {
+            width: 30px; /* Set width for icons */
+            height: 30px; /* Set height for icons */
+            margin: 3px; /* Reduced margin */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Front AI</h1>
+        <nav>
+            <a href="ui.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="sidebar">
+            <h3>Upload</h3>
+            <div class="upload-area">
+                <p>Drag and drop your designs here or click to upload.</p>
+                <input type="file" accept=".jpg,.jpeg,.png,.svg,.xd" id="file-input" />
+            </div>
+            <h3>Uploaded Files</h3>
+            <div class="uploaded-files" id="uploaded-files">
+                <!-- Uploaded file names will be displayed here -->
+            </div>
+            <div>
+                <img src="accept-icon.png" alt="Accept" class="icon" id="accept-icon" onclick="handleAccept()" />
+                <img src="reject-icon.png" alt="Reject" class="icon" id="reject-icon" onclick="handleReject()" />
+            </div>
+        </div>
+        <div class="work-area">
+            <h3>Code Display</h3>
+            <pre id="code-display"></pre>
+            <button class="button" id="copy-code">Copy Code</button>
+        </div>
+        <div class="chat-area">
+            <h3>AI Assistance</h3>
+            <div id="chat-box" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
+            <input type="text" id="user-input" placeholder="Ask me anything..." style="width: 100%; padding: 10px; margin-top: 10px;" />
+            <button class="button" id="send-message">Send</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const uploadedFilesContainer = document.getElementById('uploaded-files');
+            uploadedFilesContainer.innerHTML = ''; // Clear previous entries
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const fileName = files[i].name;
+                const fileElement = document.createElement('div');
+                fileElement.className = 'file';
+                fileElement.textContent = fileName;
+                uploadedFilesContainer.appendChild(fileElement);
+            }
+        });
+
+        document.getElementById('copy-code').addEventListener('click', function() {
+            const codeDisplay = document.getElementById('code-display');
+            const code = codeDisplay.textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                alert('Code copied to clipboard!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        });
+
+        document.getElementById('send-message').addEventListener('click', function() {
+            const userInput = document.getElementById('user-input').value;
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div>User: ${userInput}</div>`;
+            document.getElementById('user-input').value = '';
+            // Simulate AI response
+            chatBox.innerHTML += `<div>AI: How can I assist you with "${userInput}"?</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        });
+
+        function handleAccept() {
+            alert('File has been accepted!');
+            // Add any additional logic for handling accepted files
+        }
+
+        function handleReject() {
+            alert('File has been rejected!');
+            // Add any additional logic for handling rejected files
+        }
+    </script>
+</body>
+</html>

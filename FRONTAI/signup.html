@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Front AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .tagline {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .signup-form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .eye-icon {
+            cursor: pointer;
+        }
+        .terms {
+            margin: 10px 0;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function togglePassword(id) {
+            const passwordField = document.getElementById(id);
+            const eyeIcon = document.getElementById(id + '-eye');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.src = 'eye-open-icon.png'; // Replace with your eye open icon
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.src = 'eye-closed-icon.png'; // Replace with your eye closed icon
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">Front AI</div>
+        <div class="tagline">Create apps from your designs with AI.</div>
+    </header>
+    <div class="signup-form">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <div style="position: relative;">
+            <input type="password" id="password" placeholder="Password" required>
+            <img id="password-eye" src="eye-closed-icon.png" alt="Toggle Password" class="eye-icon" onclick="togglePassword('password')" style="position: absolute; right: 10px; top: 10px; width: 20px; height: 20px;">
+        </div>
+        <div style="position: relative;">
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <img id="confirm-password-eye" src="eye-closed-icon.png" alt="Toggle Password" class="eye-icon" onclick="togglePassword('confirm-password')" style="position: absolute; right: 10px; top: 10px; width: 20px; height: 20px;">
+        </div>
+        <div class="terms">
+            <input type="checkbox" required> I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>.
+        </div>
+        <button class="button">Sign Up</button>
+        <a href="login.html" class="link">Already have an account? Log In</a>
+    </div>
+    <footer>
+        <a href="#" class="link">Terms of Service</a>
+        <a href="#" class="link">Privacy Policy</a>
+        <a href="#" class="link">Contact Support</a>
+    </footer>
+</body>
+</html> 

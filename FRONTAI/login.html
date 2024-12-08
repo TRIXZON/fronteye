@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Front AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .tagline {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .login-form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .eye-icon {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.src = 'eye-open-icon.png'; // Replace with your eye open icon
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.src = 'eye-closed-icon.png'; // Replace with your eye closed icon
+            }
+        }
+
+        function handleLogin() {
+            // Here you would typically validate the user's credentials
+            // For this example, we'll just redirect to ui.html
+            window.location.href = 'ui.html'; // Redirect to ui.html after login
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">Front AI</div>
+        <div class="tagline">Transform sketches into apps with AI.</div>
+    </header>
+    <div class="login-form">
+        <input type="text" placeholder="Email Address" required>
+        <div style="position: relative;">
+            <input type="password" id="password" placeholder="Password" required>
+            <img id="eye-icon" src="eye-closed-icon.png" alt="Toggle Password" class="eye-icon" onclick="togglePassword()" style="position: absolute; right: 10px; top: 10px; width: 20px; height: 20px;">
+        </div>
+        <button class="button" onclick="handleLogin()">Login</button>
+        <a href="signup.html" class="link">Sign Up</a>
+        <a href="#" class="link">Forgot Password?</a>
+    </div>
+    <footer>
+        <a href="#" class="link">Terms of Service</a>
+        <a href="#" class="link">Privacy Policy</a>
+        <a href="#" class="link">Contact Support</a>
+    </footer>
+</body>
+</html>
